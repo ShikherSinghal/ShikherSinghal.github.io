@@ -3,20 +3,83 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0a0b10" />
+    <meta name="theme-color" content="#090a0d" />
     <meta name="description" content="Shikher Singhal — senior frontend engineer building fast, scalable, human-centered web products." />
     <meta property="og:title" content="Shikher Singhal — Senior Frontend Engineer" />
     <meta property="og:description" content="Frontend architecture, performance-critical interfaces, real-time systems, and product engineering." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://shikhersinghal.github.io" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/public/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
     <title>Shikher Singhal — Senior Frontend Engineer</title>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <div class="site-shell">
+      <header class="header">
+        <a class="brand" href="#top" aria-label="Shikher Singhal home"><span>SS</span><b>Shikher Singhal</b></a>
+        <nav class="nav" aria-label="Primary navigation">
+          <a href="#about">About</a><a href="#expertise">Expertise</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
+        </nav>
+        <div class="header-actions">
+          <button class="icon-button" data-theme-toggle aria-label="Toggle colour theme">☀</button>
+          <a class="compact-cta" href="mailto:singhalshikher1996@gmail.com">Let's talk ↗</a>
+          <button class="icon-button mobile-menu" data-menu-toggle aria-label="Toggle menu" aria-expanded="false">☰</button>
+        </div>
+      </header>
+
+      <main id="top">
+        <section class="hero section-pad">
+          <div class="hero-copy">
+            <p class="eyebrow hero-animate">SENIOR FRONTEND ENGINEER · INDIA</p>
+            <h1 class="hero-animate">I build interfaces for <em>complex products.</em></h1>
+            <p class="hero-intro hero-animate">Seven years across enterprise platforms, real-time dashboards, and product engineering—currently at WEX International.</p>
+            <div class="hero-links hero-animate"><a class="primary-cta" href="#experience">Explore my work ↗</a><a class="text-link" href="https://github.com/ShikherSinghal" target="_blank" rel="noreferrer">GitHub ↗</a></div>
+          </div>
+          <div class="orb-wrap hero-animate" aria-hidden="true"><div class="three-orb"></div><span class="orb-note">Architecture · Craft · Impact</span></div>
+          <div class="hero-meta"><span>Scroll to explore</span><span>Available for meaningful product challenges</span></div>
+        </section>
+
+        <section id="about" class="section-pad bordered">
+          <p class="section-label reveal">ABOUT</p>
+          <div class="about-grid reveal">
+            <h2>Engineering clarity into products that have a lot going on.</h2>
+            <div class="about-copy"><p>I work at the intersection of frontend architecture, product thinking, and interaction design. My focus is making complicated workflows feel understandable—without sacrificing performance or maintainability.</p><p>I enjoy shaping systems as much as individual screens: component APIs, state boundaries, data flows, delivery standards, and the collaboration habits around them.</p></div>
+          </div>
+          <div class="metric-row reveal"><div><strong>7+</strong><span>Years building software</span></div><div><strong>4</strong><span>Product organisations</span></div><div><strong>∞</strong><span>Curiosity for better systems</span></div></div>
+        </section>
+
+        <section id="expertise" class="section-pad">
+          <div class="section-heading reveal"><span class="section-label">EXPERTISE</span><h2>What I bring to the table.</h2></div>
+          <div class="expertise-grid">
+            <article class="expertise-card reveal"><span>01</span><h3>Frontend architecture</h3><p>Scalable React and TypeScript foundations, reusable systems, and pragmatic state management.</p></article>
+            <article class="expertise-card reveal"><span>02</span><h3>Product engineering</h3><p>Turning ambiguous product requirements into reliable, accessible, and maintainable interfaces.</p></article>
+            <article class="expertise-card reveal"><span>03</span><h3>Performance & quality</h3><p>Profiling, rendering strategy, resilient API states, testing, and careful delivery practices.</p></article>
+            <article class="expertise-card reveal"><span>04</span><h3>Technical leadership</h3><p>Mentoring engineers, improving reviews, and aligning frontend decisions with business outcomes.</p></article>
+          </div>
+          <div class="stack-cloud reveal"><span>React</span><span>TypeScript</span><span>JavaScript</span><span>Redux</span><span>Zustand</span><span>Node.js</span><span>C#</span><span>Tailwind CSS</span><span>WebSockets</span><span>Docker</span><span>Webpack</span><span>Design Systems</span></div>
+        </section>
+
+        <section id="experience" class="experience section-pad bordered">
+          <div class="section-heading reveal"><span class="section-label">EXPERIENCE</span><h2>A career shaped around ambitious interfaces.</h2></div>
+          <div class="timeline">
+            <article class="timeline-row reveal"><div class="timeline-period">May 2026 — Present</div><div class="timeline-main"><span>WEX International</span><h3>Senior Software Engineer</h3><p>Building product experiences and frontend systems for a global financial technology platform.</p></div><div class="timeline-index">01</div></article>
+            <article class="timeline-row reveal"><div class="timeline-period">Apr 2023 — May 2026</div><div class="timeline-main"><span>GreyOrange</span><h3>Senior Software Engineer</h3><p>Worked on complex enterprise interfaces for warehouse and robotics operations, with a focus on frontend scale and usability.</p></div><div class="timeline-index">02</div></article>
+            <article class="timeline-row reveal"><div class="timeline-period">Sep 2022 — Mar 2023</div><div class="timeline-main"><span>CleverTap</span><h3>Software Developer</h3><p>Contributed to customer-engagement product experiences and data-heavy web interfaces.</p></div><div class="timeline-index">03</div></article>
+            <article class="timeline-row reveal"><div class="timeline-period">Jun 2019 — Sep 2021</div><div class="timeline-main"><span>GreyOrange</span><h3>Full-stack Developer</h3><p>Built React applications and supporting services for operational software used in high-throughput environments.</p></div><div class="timeline-index">04</div></article>
+          </div>
+        </section>
+
+        <section id="contact" class="contact section-pad">
+          <div class="reveal"><span class="section-label">CONTACT</span><h2>Have a difficult frontend problem?</h2><p>That is usually the interesting kind. Let’s discuss the product, the constraints, and what a strong solution could look like.</p><a class="email-link" href="mailto:singhalshikher1996@gmail.com">singhalshikher1996@gmail.com ↗</a></div>
+          <div class="social-row reveal"><a href="https://github.com/ShikherSinghal" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/shikher-singhal-250489117" target="_blank" rel="noreferrer">LinkedIn</a><a href="mailto:singhalshikher1996@gmail.com">Email</a></div>
+        </section>
+      </main>
+
+      <footer><span>© <span data-year></span> Shikher Singhal</span><span>Designed for clarity. Built with Framer Motion & Three.js.</span></footer>
+    </div>
+    <script type="module" src="/app.js"></script>
   </body>
 </html>
