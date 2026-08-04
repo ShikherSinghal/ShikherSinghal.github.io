@@ -386,3 +386,67 @@ applyView(activeView, { persist: false, updateUrl: requestedView == null && acti
 if (window.location.hash) {
   requestAnimationFrame(() => document.querySelector(window.location.hash)?.scrollIntoView());
 }
+
+// Advocate information notice. Acceptance lasts for the current browser session.
+const noticeStyle = document.createElement('style');
+noticeStyle.textContent = `
+  body.law-notice-open { overflow: hidden; }
+  .law-notice { position: fixed; z-index: 1600; inset: 0; display: grid; place-items: center; padding: 22px; color: #fffdf8; background: rgba(3, 11, 17, .88); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+  .law-notice[hidden] { display: none; }
+  .law-notice__card { width: min(620px, 100%); padding: clamp(28px, 5vw, 48px); background: linear-gradient(145deg, #10283a, #07131f); border: 1px solid rgba(235, 210, 159, .28); border-radius: 20px; box-shadow: 0 30px 100px rgba(0, 0, 0, .5); }
+  .law-notice__kicker { display: block; margin-bottom: 16px; color: #c8a464; font: 700 10px/1.3 'DM Sans', sans-serif; letter-spacing: .18em; text-transform: uppercase; }
+  .law-notice h2 { margin: 0 0 18px; color: #ebd29f; font: 500 clamp(32px, 6vw, 48px)/1.08 'Playfair Display', serif; }
+  .law-notice p { margin: 0 0 14px; color: rgba(255, 255, 255, .68); font: 400 14px/1.75 'DM Sans', sans-serif; }
+  .law-notice__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .law-notice__actions button { min-height: 48px; padding: 0 20px; border-radius: 9px; border: 1px solid #c8a464; font: 700 13px/1 'DM Sans', sans-serif; cursor: pointer; }
+  .law-notice__accept { color: #101923; background: #c8a464; }
+  .law-notice__return { color: #fffdf8; background: transparent; border-color: rgba(255, 255, 255, .25) !important; }
+  .law-notice__actions button:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+  @media (max-width: 520px) { .law-notice__actions { flex-direction: column; } .law-notice__actions button { width: 100%; } }
+`;
+document.head.appendChild(noticeStyle);
+
+const lawNotice = document.createElement('div');
+lawNotice.className = 'law-notice';
+lawNotice.hidden = true;
+lawNotice.setAttribute('role', 'dialog');
+lawNotice.setAttribute('aria-modal', 'true');
+lawNotice.setAttribute('aria-labelledby', 'law-notice-title');
+lawNotice.innerHTML = `
+  <div class="law-notice__card">
+    <span class="law-notice__kicker">Professional information notice</span>
+    <h2 id="law-notice-title">Please read before continuing.</h2>
+    <p>This website is provided solely for general information about Advocate Shubhendu Shekhar. It is not an advertisement, solicitation or invitation for legal work. By continuing, you confirm that you are seeking this information of your own accord.</p>
+    <p>The material on this website is not legal advice. Viewing the website, submitting an enquiry or contacting the advocate does not by itself create an advocate–client relationship.</p>
+    <div class="law-notice__actions">
+      <button class="law-notice__accept" type="button">I acknowledge</button>
+      <button class="law-notice__return" type="button">Return to portfolio</button>
+    </div>
+  </div>
+`;
+document.body.appendChild(lawNotice);
+
+const noticeAccepted = () => {
+  try { return sessionStorage.getItem('law-information-notice') === 'accepted'; } catch { return false; }
+};
+
+const syncLawNotice = () => {
+  const shouldShow = activeView === 'advocate' && !noticeAccepted();
+  lawNotice.hidden = !shouldShow;
+  document.body.classList.toggle('law-notice-open', shouldShow);
+  if (shouldShow) requestAnimationFrame(() => lawNotice.querySelector('.law-notice__accept')?.focus());
+};
+
+lawNotice.querySelector('.law-notice__accept')?.addEventListener('click', () => {
+  try { sessionStorage.setItem('law-information-notice', 'accepted'); } catch { /* storage may be unavailable */ }
+  syncLawNotice();
+});
+
+lawNotice.querySelector('.law-notice__return')?.addEventListener('click', () => {
+  applyView('portfolio');
+  syncLawNotice();
+});
+
+viewButtons.forEach((button) => button.addEventListener('click', () => requestAnimationFrame(syncLawNotice)));
+window.addEventListener('popstate', () => requestAnimationFrame(syncLawNotice));
+syncLawNotice();
